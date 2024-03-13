@@ -2,7 +2,8 @@ export interface IModalData {
     content: HTMLElement;
 }
 
-export interface ISuccess {
+export interface IOrderSuccess {
+    id: string;
     total: number;
 }
 
@@ -19,17 +20,18 @@ export interface ICard {
     price: number | null;
 }
 
-export interface IBasket {
-    items: Map<string, number>;
-    totalprice: number;
-    add(id: string): void;
-    remove(id: string): void;
+export interface IBasketItem {
+    id: string;
+    price: number;
+    title: string;
 }
 
 export interface IForm {
     valid: boolean;
     errors: string[];
 }
+
+export type PaymentMethod = 'online' | 'offline';
 
 export interface IFormPayment extends IForm {
     payment: PaymentMethod;
@@ -41,11 +43,25 @@ export interface IFormContacts extends IForm {
     phone: string;
 }
 
-export interface IClientData extends IForm {
-	payment: PaymentMethod;
-	address: string;
-	email: string;
-	phone: string;
+export interface IOrderItems {
+    total: number;
+    items: string[];
 }
 
-export type PaymentMethod = 'Онлайн' | 'При получении';
+export interface IOrderData extends IOrderItems {
+	payment: PaymentMethod;
+    email: string;
+	phone: string;
+	address: string;
+}
+
+export type FormErrors = Partial<Record<keyof IOrderData, string>>;
+
+export interface IAppState {
+    catalog: ICard[];
+    basket: IBasketItem[];
+    order: IOrderData | null;
+    preview: string | null;
+}
+
+
