@@ -237,13 +237,6 @@ interface IPage {
 - `set email` - устаналивает электронную почту
 - `set phone` - переключение номер телефона
 
-**class FormContacts  extends Form** - для отображения карточек в модальном окне  
-**class Form extends Component** - основа для форм заказа товаров  
-**class FormPayment extends Form** - отображение формы с выбором способа оплаты и адреса доставки  
-**class FormContacts class Form** - отображение формы с указанием  электронной почты и телефона  
-**class OrderSuccess class Form** - отображение формы с успешным заказом  
-
-
 # Слой MODEL  
 Представлен классом **AppState**, который реализуется интерфейсом IAppState. 
 ```
