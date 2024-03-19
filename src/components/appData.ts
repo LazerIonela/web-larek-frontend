@@ -1,31 +1,28 @@
 import { Model } from './base/model';
-import { FormErrors, IAppState, ICard, IOrderData, IOrderInputs, IBasketItem, PaymentMethod, IFormContacts } from '../types';
+import {
+	FormErrors,
+	IAppState,
+	ICard,
+	IOrderData,
+	IOrderInputs,
+} from '../types';
 
 export type CatalogChangeEvent = {
 	catalog: ICard[];
 };
 
-export class Card extends Model<ICard> {
-	id: string;
-    description?: string;
-    image?: string;
-    title: string;
-    category: string;
-    price: number | null;
-}
-
 export class AppState extends Model<IAppState> {
 	catalog: ICard[] = [];
 	basket: ICard[] = [];
 	order: IOrderData = {
-        payment: '',
-        email: '',
-	    phone: '',
-	    address: '',
+		payment: '',
+		email: '',
+		phone: '',
+		address: '',
 		total: 0,
 		items: [],
 		valid: false,
-        errors: [],
+		errors: [],
 	};
 	preview: string | null;
 	formErrors: FormErrors = {};
@@ -34,21 +31,21 @@ export class AppState extends Model<IAppState> {
 	setCatalog(items: ICard[]) {
 		items.map((item) => (this.catalog = [...this.catalog, item]));
 		this.emitChanges('cards:changed', { catalog: this.catalog });
-    }
+	}
 
 	setPreview(item: ICard) {
 		this.preview = item.id;
 		this.emitChanges('preview:changed', item);
 	}
 
-    //Определяет текст кнопки для товара в зависимости от того, 
+	//Определяет текст кнопки для товара в зависимости от того,
 	// находится ли он уже в корзине или нет
 	setButtonText(item: ICard) {
 		if (this.order.items.some((id) => id === item.id)) {
 			return 'Убрать';
 		} else return 'В корзину';
 	}
-    
+
 	//Возвращает массив товаров, находящихся в корзине
 	getBasket(): ICard[] {
 		const array: ICard[] = [];
@@ -57,8 +54,8 @@ export class AppState extends Model<IAppState> {
 		});
 		return array;
 	}
-   	
-	//Добавляет товар в корзину, если его там нет, 
+
+	//Добавляет товар в корзину, если его там нет,
 	//или вызывает метод удаления из корзины, если уже присутствует.
 	toggleOrderedItem(item: ICard) {
 		if (!this.order.items.some((id) => id === item.id)) {
@@ -69,7 +66,7 @@ export class AppState extends Model<IAppState> {
 		}
 	}
 
-    //Удаляет товар из корзины
+	//Удаляет товар из корзины
 	deleteItem(item: ICard) {
 		if (this.order.items.some((id) => id === item.id)) {
 			this.order.items = this.order.items.filter((id) => item.id !== id);
@@ -78,17 +75,17 @@ export class AppState extends Model<IAppState> {
 		return;
 	}
 
-    //Очищает корзину 
+	//Очищает корзину
 	clearBasket() {
 		this.order = {
 			payment: '',
-            email: '',
-	        phone: '',
-	        address: '',
-	    	total: 0,
-		    items: [],
-		    valid: false,
-            errors: [],
+			email: '',
+			phone: '',
+			address: '',
+			total: 0,
+			items: [],
+			valid: false,
+			errors: [],
 		};
 		this.basket = [];
 		this.emitChanges('basket:changed');
@@ -110,15 +107,12 @@ export class AppState extends Model<IAppState> {
 		);
 	}
 
-	//Устанавливает способ оплаты 
-    setPayment(value: string) {
+	//Устанавливает способ оплаты
+	setPayment(value: string) {
 		if (this.order.payment !== value) this.order.payment = value;
 	}
 
-	setInput(
-		field: keyof IOrderInputs,
-		value: string
-	) {
+	setInput(field: keyof IOrderInputs, value: string) {
 		this.order[field] = value;
 		this.validateOrder();
 		// if (this.validateOrder()) {
@@ -149,4 +143,4 @@ export class AppState extends Model<IAppState> {
 		this.events.emit('formErrors:change', this.formErrors);
 		return Object.keys(errors).length === 0;
 	}
-};
+}

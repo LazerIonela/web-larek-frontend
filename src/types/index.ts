@@ -1,38 +1,38 @@
 export interface IModalData {
-    content: HTMLElement;
+	content: HTMLElement;
 }
 
 export interface IOrderSuccess {
-    id: string;
-    total: number;
+	id: string;
+	total: number;
 }
 
 export interface ISuccessActions {
-    onClick: () => void;
+	onClick: () => void;
 }
 
 export interface ICard {
-    id: string;
-    description?: string;
-    image?: string;
-    title: string;
-    category: string;
-    price: number | null;
-    button?: string;
+	id: string;
+	description?: string;
+	image?: string;
+	title: string;
+	category: string;
+	price: number | null;
+	button?: string;
 }
 
 export interface ICardList {
-    total: number;
+	total: number;
 	items: ICard[];
 }
 
 export interface ICardActions {
-    onClick: (event: MouseEvent) => void;
+	onClick: (event: MouseEvent) => void;
 }
 
 export interface IBasketItem {
-    index: number;
-    deleteButton: boolean;
+	index: number;
+	deleteButton: boolean;
 }
 
 export interface IBasketView {
@@ -41,47 +41,43 @@ export interface IBasketView {
 	selected: string[];
 }
 
-
 export interface IForm {
-    valid: boolean;
-    errors: string[];
+	valid: boolean;
+	errors: string[];
 }
 
-export type PaymentMethod = 'online' | 'offline' | string;
-
 export interface IFormPayment extends IForm {
-    payment: string;
+	payment: string;
 	address: string;
 }
 
 export interface IFormContacts extends IForm {
-    email: string;
-    phone: string;
+	email: string;
+	phone: string;
 }
-export interface IOrderData extends IFormPayment, IFormContacts  {
+export interface IOrderData extends IFormPayment, IFormContacts {
 	total: number;
 	items: string[];
 }
 
 export interface IOrderInputs {
-    address: string;
-    email: string;
-    phone: string;
+	address: string;
+	email: string;
+	phone: string;
 }
 
 export type FormErrors = Partial<Record<keyof IOrderData, string>>;
 
 export interface IAppState {
-    catalog: ICard[];
-    basket: ICard[];
-    basketList: IBasketItem[];
-    order: IOrderData | null;
-    preview: string | null;
+	catalog: ICard[];
+	basket: ICard[];
+	basketList: IBasketItem[];
+	order: IOrderData | null;
+	preview: string | null;
 }
 
-
 export interface IPage {
-    counter: number;
-    catalog: HTMLElement[];
-    locked: boolean;
+	counter: number;
+	catalog: HTMLElement[];
+	locked: boolean;
 }
