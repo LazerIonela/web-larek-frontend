@@ -46,6 +46,5 @@ export class Form<T> extends Component<IForm> {
         super.render({valid, errors});
         Object.assign(this, inputs);
         return this.container;
-
     }
 }

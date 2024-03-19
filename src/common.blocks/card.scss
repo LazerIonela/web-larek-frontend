@@ -11,12 +11,18 @@
 
   &_full {
     flex-direction: row;
+    padding: 48px 0;
+		gap: 48px;
     background-color: transparent;
 
     .card__title {
       flex-grow: 0;
     }
   }
+
+  &__button {
+		min-width: 180px;
+	}
 
   &_compact {
     flex-direction: row;
