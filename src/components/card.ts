@@ -101,11 +101,6 @@ export class BasketItem extends Card {
 		if (actions?.onClick) {
 			this._deleteButton.addEventListener('click', actions.onClick);
 		}
-		// if (this._deleteButton) {
-		// 	this._deleteButton.addEventListener('change', (event: MouseEvent) => {
-		// 		actions?.onClick?.(event);
-		// 	});
-		// }
 	}
 
 	setIndex(index: number) {
