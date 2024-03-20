@@ -1,6 +1,4 @@
 import { Form } from './common/form';
-// import {ensureElement} from "../utils/utils";
-// import {EventEmitter} from "./base/events";
 import { IFormContacts, IFormPayment } from '../types';
 import { IEvents } from './base/events';
 

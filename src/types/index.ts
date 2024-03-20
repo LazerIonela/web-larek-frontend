@@ -21,11 +21,6 @@ export interface ICard {
 	button?: string;
 }
 
-export interface ICardList {
-	total: number;
-	items: ICard[];
-}
-
 export interface ICardActions {
 	onClick: (event: MouseEvent) => void;
 }
@@ -81,3 +76,8 @@ export interface IPage {
 	catalog: HTMLElement[];
 	locked: boolean;
 }
+
+export type ApiListResponse<Type> = {
+	total: number;
+	items: Type[];
+};
